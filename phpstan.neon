@@ -1,0 +1,26 @@
+parameters:
+    level: 6
+    paths:
+        - app
+        - api
+        - datatables
+        - template
+    excludePaths:
+        - test/*
+        - vendor/*
+        - *.js
+        - *.css
+        - cli/*
+        - assets/*
+        - docs
+        - old
+        - SQL
+
+    cache:
+        type: 'file'
+        directory: '/tmp/phpstan-cache'
+        ttl: 7200  # 2 horas
+
+    parallel:
+        maximumNumberOfProcesses: 2
+        jobSize: 15

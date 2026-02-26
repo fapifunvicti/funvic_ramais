@@ -1,0 +1,21 @@
+<div class="topo">
+    <div class="topo-header">
+            {% block topo %}
+            {{ g_nome_setor }}
+            {% endblock %}
+    </div>
+    <div class="area-login">
+        {% if session('usuario_logado') is null %}
+            <span>
+                <a href="/login">Login</a>
+            </span>
+        {% else %}
+            <span>
+                Usuario: {{ session('login').email }}
+            </span>
+            <span>
+                <a href="/login/logoff">Deslogar</a>
+            </span>
+        {% endif %}
+    </div>
+</div>

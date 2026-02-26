@@ -1,0 +1,383 @@
+{
+	/*"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"te",
+				"text"
+			],
+			[
+				"templa",
+				"template_load($caminho, $params)"
+			],
+			[
+				"form",
+				"form_valido"
+			],
+			[
+				"clas",
+				"class_exists()"
+			],
+			[
+				"Mess",
+				"MessageBox"
+			],
+			[
+				"s_",
+				"s_listaErros"
+			],
+			[
+				"TIPO",
+				"TIPO_AVISO"
+			],
+			[
+				"tipo_",
+				"tipo_produto"
+			],
+			[
+				"mb_str",
+				"mb_stripos()"
+			]
+		]
+	},*/
+	/*"buffers":
+	[
+		{
+			"file": "/home/ti04/programacao/php/ramal/docker-compose.yml",
+			"settings":
+			{
+				"buffer_size": 1320,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],*/
+	/*"build_system": "",*/
+	/*"build_system_choices":
+	[
+	],*/
+	/*"build_varint": "",*/
+	/*"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"xdebug",
+				"Set Syntax: Xdebug"
+			],
+			[
+				"xdebu",
+				"Xdebug: Start Debugging (Launch Browser)"
+			],
+			[
+				"xde",
+				"Xdebug: Stop Debugging"
+			],
+			[
+				"theme",
+				"UI: Select Color Scheme"
+			],
+			[
+				"INSTALL",
+				"Package Control: Install Package"
+			],
+			[
+				"THEME",
+				"UI: Select Theme"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},*/
+	/*"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},*/
+	/*"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},*/
+	/*"expanded_folders":
+	[
+		"/home/ti04/programacao/php/funvic_chaves",
+		"/home/ti04/programacao/php/funvic_chaves/assets",
+		"/home/ti04/programacao/php/funvic_chaves/assets/js",
+		"/home/ti04/programacao/php/funvic_chaves/form",
+		"/home/ti04/programacao/php/funvic_chaves/form/emprestimo",
+		"/home/ti04/programacao/php/funvic_chaves/template",
+		"/home/ti04/programacao/php/funvic_chaves/template/default",
+		"/home/ti04/programacao/php/funvic_chaves/template/default/emprestimo"
+	],*/
+	/*"file_history":
+	[
+		"/home/ti04/programacao/php/funvic_chaves/ajax/ajaxFuncionarios.php",
+		"/home/ti04/programacao/php/funvic_chaves/template/default/emprestimo/modal_troca.php",
+		"/home/ti04/programacao/php/funvic_chaves/assets/js/emprestimo.js",
+		"/home/ti04/programacao/php/funvic_chaves/form/emprestimo/processo_troca_chave.php",
+		"/home/ti04/programacao/php/funvic_chaves/app/Service/EmprestimoChaveService.php",
+		"/home/ti04/programacao/php/funvic_chaves/chaves_release.sublime-workspace",
+		"/home/ti04/.config/sublime-text/Packages/phpfmt/message",
+		"/home/ti04/programacao/php/funvic_chaves/api/.htaccess",
+		"/home/ti04/programacao/php/funvic_chaves/api/index.php",
+		"/home/ti04/programacao/php/funvic_chaves/bootstrap.php",
+		"/home/ti04/programacao/php/funvic_chaves/produtos.php",
+		"/home/ti04/programacao/php/funvic_chaves/template/default/produtos/inserir.php",
+		"/home/ti04/programacao/php/funvic_chaves/xdebug.ini",
+		"/home/ti04/programacao/php/funvic_chaves/chaves.php",
+		"/home/ti04/programacao/php/funvic_chaves/tipo_chaves.php",
+		"/home/ti04/programacao/php/funvic_chaves/template/default/tipo_chave/datatable.php",
+		"/home/ti04/programacao/php/funvic_chaves/template/default/tipo_chave/novo.php",
+		"/home/ti04/programacao/php/funvic_chaves/chaves_release.sublime-project",
+		"/home/ti04/.config/sublime-text/Packages/User/Xdebug.sublime-settings",
+		"/home/ti04/programacao/php/funvic_chaves/tipo_produto.php",
+		"/home/ti04/programacao/php/funvic_chaves/composer.json",
+		"/home/ti04/programacao/php/funvic_chaves/funcoes/templates.php",
+		"/home/ti04/programacao/php/funvic_chaves/template/default/tipo_produto/adicionar.php",
+		"/home/ti04/programacao/php/funvic_chaves/app/Base/MessageBox.php",
+		"/home/ti04/programacao/php/funvic_chaves/app/Base/Alerta.php",
+		"/home/ti04/programacao/php/funvic_chaves/emprestimo.php",
+		"/home/ti04/programacao/php/funvic_chaves/.env"
+	],*/
+	/*"find":
+	{
+		"height": 35.0
+	},*/
+	/*"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},*/
+	/*"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},*/
+	/*"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/ti04/programacao/php/ramal/docker-compose.yml",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1320,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///home/ti04/programacao/php/ramal/docker-compose.yml",
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],*/
+	/*"incremental_find":
+	{
+		"height": 35.0
+	},*/
+	/*"input":
+	{
+		"height": 65.0
+	},*/
+	/*"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},*/
+	/*"menu_visible": true,*/
+	/*"output.Debugger":
+	{
+		"height": 382.0,
+		"history":
+		[
+		]
+	},*/
+	/*"output.Debugger Console":
+	{
+		"height": 143.0,
+		"history":
+		[
+		]
+	},*/
+	/*"output.LSP Log Panel":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},*/
+	/*"output.diagnostics":
+	{
+		"height": 178.0,
+		"history":
+		[
+		]
+	},*/
+	/*"output.find_results":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},*/
+	/*"output.mdpopups":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},*/
+	/*"output.xdebug":
+	{
+		"height": 40.0,
+		"history":
+		[
+		]
+	},*/
+	/*"pinned_build_system": "",*/
+	/*"project": "chaves_release.sublime-workspace",*/
+	/*"replace":
+	{
+		"height": 66.0
+	},*/
+	/*"save_all_on_build": true,*/
+	/*"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"COMPOS",
+				"composer.json"
+			]
+		],
+		"width": 0.0
+	},*/
+	/*"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},*/
+	/*"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},*/
+	/*"selected_group": 0,*/
+	/*"settings":
+	{
+		"lsp_show_inlay_hints": false
+	},*/
+	/*"show_minimap": true,*/
+	/*"show_open_files": true,*/
+	/*"show_tabs": true,*/
+	/*"side_bar_visible": true,*/
+	/*"side_bar_width": 375.0,*/
+	/*"status_bar_visible": true,*/
+	/*"template_settings":
+	{
+	}*/
+	"debugger_configurations":
+	[
+		{
+			"name": "Listen for Xdebug",
+			"pathMappings":
+			{
+				"/home/ti04/programacao/php/funvic_chaves": "${folder}"
+			},
+			"port": 9003,
+			"request": "launch",
+			"type": "php"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "/home/ti04/programacao/php/funvic_chaves"
+		}
+	],
+}

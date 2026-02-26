@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block css %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUNVIC - Lista De Ramais - {% block titulo %}{% endblock %}</title>
+    {% block head %}{% endblock %}
+
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/selectize.min.css">
+    <link rel="stylesheet" href="/assets/css/selectize.bootstrap5.css">
+    <link rel="stylesheet" href="/assets/css/ramal.css">
+
+</head>
+<body>
+    
+    {% include 'partials/top.html.twig' %}
+
+    {% include 'partials/sidebar.html.twig' %}
+    <div class="main-content" id="mainContent">
+        {% block conteudo %}{% endblock %}
+    </div>
+    
+    {% block js_extra %}{% endblock %}
+    <script src="/assets/js/htmx/htmx.js"></script>
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/datatables.min.js"></script>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+        }
+    </script>
+</body>
+</html>

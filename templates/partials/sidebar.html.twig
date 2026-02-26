@@ -1,0 +1,13 @@
+        <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Lista de Setores</h3>
+            <button class="toggle-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>X
+            </button>
+        </div>
+        <ul class="sidebar-menu">
+            {% for item in menu_item %}
+            <li><a href="/setor/{{ item.idsetor }}"><i class="fas fa-home"></i> <span class="menu-text">{{ item.nome }}</span></a></li>
+            {% endfor %}
+        </ul>
+    </div>

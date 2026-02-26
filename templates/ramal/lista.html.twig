@@ -1,0 +1,53 @@
+{% extends "home.html.twig" %}
+
+
+{% block titulo %} AAAA   {% endblock %}
+{% block topo %} {{ setor }}{% endblock %}
+
+{% block conteudo %}    
+
+{% if ramais is empty %}
+    <h2>Desculpe nenhum Ramal disponivel no momento!</h2>
+
+{% else %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>NOME</th>
+            <th>RAMAL</th>
+            <th>SETOR</th>
+{% if admin is not empty %}
+            <th>Administrativo</th>
+        
+{% endif%}
+        </tr>
+    </thead>
+    <tbody>
+    {% for r in ramais %}
+        <tr>
+            <td>{{ r.ramal_nome }}</td>
+            <td>{{ r.numero }}</td>
+            <td>{{ r.setor_nome }}</td>
+        {% if admin is not empty %}
+                <th>Administrativo</th>
+        {% endif%}
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>NOME</th>
+            <th>RAMAL</th>
+            <th>SETOR</th>
+{% if admin is not empty %}
+            <th>SETOR</th>
+{% endif%}
+        </tr>
+    </tfoot>
+</table>
+
+{% endif %}
+
+
+
+{% endblock %}
