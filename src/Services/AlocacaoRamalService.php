@@ -42,7 +42,12 @@ class AlocacaoRamalService {
         }
 
         $query->whereNull('alocacao_ramal.deletado_em');
-        return $query->get()->toArray();
+        return $query;
 
+    }
+
+    public function Count(): int {
+        $capsule = DBSetup::get();
+        return $capsule->table('alocacao_ramal')->count();
     }
 }
