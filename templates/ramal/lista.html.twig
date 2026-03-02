@@ -6,11 +6,11 @@
 
 {% block conteudo %}    
 
-{% if ramais is empty %}
+{% if totalRamais == 0 %}
     <h2>Desculpe nenhum Ramal disponivel no momento!</h2>
 
 {% else %}
-<table class="table table-striped">
+<table id="lista_ramais" class="table table-striped">
     <thead>
         <tr>
             <th>NOME</th>
@@ -23,6 +23,8 @@
         </tr>
     </thead>
     <tbody>
+
+<!--
     {% for r in ramais %}
         <tr>
             <td>{{ r.ramal_nome }}</td>
@@ -35,12 +37,13 @@
     {% endfor %}
     </tbody>
     <tfoot>
+-->
         <tr>
             <th>NOME</th>
             <th>RAMAL</th>
             <th>SETOR</th>
 {% if admin is not empty %}
-            <th>SETOR</th>
+            <th>Administrativo</th>
 {% endif%}
         </tr>
     </tfoot>
@@ -49,5 +52,46 @@
 {% endif %}
 
 
+{% endblock %}
 
+
+
+{% block js_extra %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dt = new DataTable('#lista_ramais',{
+            processing: true,
+            serverSide: true,
+            searchable: true,
+            paging: true,
+            pageLength: 100,
+            language: {
+                url: '/assets/js/datatable-pt-br.json'
+            },
+   
+            
+            ajax: {
+                url: '/dt/ramal/{{ id }}',
+                type: "POST",
+                deferRender: true
+               
+            },
+
+            columns: [
+                {
+                    data: 'ramal_nome'
+                },
+
+                {
+                    data: 'ramal_numero'
+                },
+
+                {
+                    data: 'setor_nome'
+                }
+            ]
+
+        });
+    });
+</script>
 {% endblock %}

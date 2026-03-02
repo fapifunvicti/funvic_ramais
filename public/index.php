@@ -57,13 +57,10 @@ $app->group('/setor', function($app) {
         }
 
         $setorService = new \App\Ramal\Services\SetorService();
+        $setor  = $setorService->listarTodos(['id' => $id]) ?? "";
+        $ramalCount = $alocRamalService->listarTodos(['idsetor' => (int)$id ])->count();
 
-        $setor  = $setorService->listarTodos(['id' => $id]);
-        $ramais = $alocRamalService->listarTodos(['idsetor' => (int)$id ]);
-
-
-
-        return $view->render($response, "ramal/lista.html.twig",['setor' => $setor[0]->nome, 'ramais' => $ramais]);
+        return $view->render($response, "ramal/lista.html.twig",['id' => $id, 'setor' => $setor ? $setor[0]->nome : "", 'totalRamais' => $ramalCount]);
     });
 
 })
@@ -119,7 +116,18 @@ $app->group('/login', function($app){
 
 
 
+$app->group('/dt', function($app){
+    $app->post('/ramal[/{tipo}]', function (Request $request, Response $response, $args){
 
+        $post = $request->getParsedBody();
+        $post = array_merge($post, $args);
+        $dataTable = new \App\Ramal\DatatableData\DTListarRamais($post);
+        $dataTable->Render();
+        return $response->withHeader('content-type','application/json'); 
+                       
+
+    });
+})->add(new \App\Ramal\Middleware\AuthUsuario());
 
 $app->run();
 $bootstrap->End();
