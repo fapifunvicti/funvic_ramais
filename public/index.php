@@ -60,7 +60,13 @@ $app->group('/setor', function($app) {
         $setor  = $setorService->listarTodos(['id' => $id]) ?? "";
         $ramalCount = $alocRamalService->listarTodos(['idsetor' => (int)$id ])->count();
 
-        return $view->render($response, "ramal/lista.html.twig",['id' => $id, 'setor' => $setor ? $setor[0]->nome : "", 'totalRamais' => $ramalCount]);
+        return $view->render($response, "ramal/lista.html.twig",['id' => $id,
+                                                                                           'setor' => $setor ? $setor[0]->nome : "", 
+                                                                                           'totalRamais' => $ramalCount,
+                                                                                            'usuario_logado' => $_SESSION['usuario_logado'] ?? false
+                                                                                           ],
+                                                                                          
+                                                                                           );
     });
 
 })

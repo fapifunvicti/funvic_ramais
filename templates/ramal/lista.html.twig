@@ -16,7 +16,7 @@
             <th>NOME</th>
             <th>RAMAL</th>
             <th>SETOR</th>
-{% if admin is not empty %}
+{% if usuario_logado == true   %}
             <th>Administrativo</th>
         
 {% endif%}
@@ -43,12 +43,14 @@
             <th>NOME</th>
             <th>RAMAL</th>
             <th>SETOR</th>
-{% if admin is not empty %}
+{% if usuario_logado == true   %}
             <th>Administrativo</th>
 {% endif%}
         </tr>
     </tfoot>
 </table>
+
+
 
 {% endif %}
 
@@ -60,6 +62,63 @@
 {% block js_extra %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        var columns = [];
+        {% if usuario_logado == true   %}
+           columns = [
+                {
+                    data: 'ramal_nome'
+                },
+
+                {
+                    data: 'ramal_numero'
+                },
+
+                {
+                    data: 'setor_nome'
+                },
+
+            
+                {
+                    data: null,
+                    class: 'no-click',
+                    render: function ( data, type, row, meta ){
+                        return '<!--<div class="d-flex mb-3"> \
+                                    <div class="tooltip">AAAA</div>\
+                                    <button hx-post=""   data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top" data-setor_id='+row["setor_idsetor"]+' data-ramal_id='+row["ramal_id"]+'  class="tooltip-btn btn btn-secondary btn-sm me-2"> \
+                                    <i class="fas fa-edit"></i></button> -->\
+                                    \
+                                    <button data-bs-toggle="tooltip" \
+                                            data-bs-title="Another one here too" \
+                                            hx-trigger="clicked" hx-delete="/deletar" \
+                                            hx-confirm="Tem Certeza que Deseja Deletar? " \
+                                            hx-swap="outerHTML"\
+                                    data-setor_id='+row["setor_idsetor"]+' data-ramal_id='+row["ramal_id"]+' class="btn btn-danger btn-sm"> \
+                                    <i class="fas fa-eraser"></i></button> \
+                                </div> \
+                                ';
+                    }
+   
+                }
+      
+            ]
+        {% else %}
+            columns = [
+                {
+                    data: 'ramal_nome'
+                },
+
+                {
+                    data: 'ramal_numero'
+                },
+
+                {
+                    data: 'setor_nome'
+                },
+      
+            ]
+
+        {% endif %}
+
         const dt = new DataTable('#lista_ramais',{
             processing: true,
             serverSide: true,
@@ -78,21 +137,27 @@
                
             },
 
-            columns: [
-                {
-                    data: 'ramal_nome'
-                },
-
-                {
-                    data: 'ramal_numero'
-                },
-
-                {
-                    data: 'setor_nome'
-                }
-            ]
+            columns: columns
 
         });
     });
 </script>
+
+<script>
+    var table = $('#lista_ramais').DataTable();
+
+    // Sempre que a tabela for redesenhada (mudar página, filtrar, etc)
+    table.on('draw', function () {
+        // Processa os novos botões para que o htmx os reconheça
+        htmx.process(document.querySelector('#lista_ramais'));
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    });
+
+</script>
+
 {% endblock %}
+
