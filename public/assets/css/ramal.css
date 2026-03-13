@@ -1,6 +1,8 @@
 :root {
-    --largura-menu-lateral: 250px;
+    --largura-menu-lateral: 300px;
     --menu-lateral-recolhido: 250px;
+
+    --largura-lateral: 450px;
 }
 
 
@@ -67,6 +69,8 @@
     white-space: nowrap;
     text-transform: uppercase;
     font-size: clamp(12px, 1.5vw, 12px);
+    overflow-wrap: break-word;
+    word-break: break-all;
 
 }
 
@@ -151,16 +155,16 @@
 
 @media screen and (min-width: 800px){
     .sidebar {
-        width: 180px;
+        width: var(--largura-menu-lateral);
     }
 
     .topo-header {
-        margin-left:  180px;
+        margin-left:  var(--largura-menu-lateral);
         padding: clamp(20px, 1vw, 2vw);
     }
 
     .main-content {
-        margin-left: 180px;
+        margin-left: var(--largura-menu-lateral);
         padding: 20px;
         transition: margin-left 0.3s ease;
     }

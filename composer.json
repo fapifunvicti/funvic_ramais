@@ -20,6 +20,7 @@
         "nyholm/psr7-server": "^1.1",
         "guzzlehttp/psr7": "^2",
         "laminas/laminas-diactoros": "^3.8",
-        "slim/twig-view": "^3.4"
+        "slim/twig-view": "^3.4",
+        "twig/intl-extra": "^3.23"
     }
 }

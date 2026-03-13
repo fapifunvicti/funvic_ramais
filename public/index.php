@@ -8,6 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
+use Twig\Extra\Intl\IntlExtension;
 
 
 $bootstrap->Start();
@@ -23,8 +24,10 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 $twig = Twig::create(__DIR__ . '/../templates', ['cache' => false]);
 
 
+
 //adicionar extensao para lidar com as sessoes de login
 $twig->addExtension(new \App\Ramal\Extensao\SessaoTwig());
+$twig->addExtension(new IntlExtension());
 
 $db = $container->get('setup.db')();
 
@@ -134,6 +137,80 @@ $app->group('/dt', function($app){
 
     });
 })->add(new \App\Ramal\Middleware\AuthUsuario());
+
+
+$app->group('/admin', function($app){
+    
+    $app->map(['GET', 'POST'], '/setor[/{tipo}[/{id:\d+}]]', function(Request $request, Response $response, array $args){
+        $view = Twig::fromRequest($request);
+        $service = new \App\Ramal\Services\SetorService();
+        $id = $args['id'] ?? null;
+
+
+        if($request->getMethod() === "POST" && empty($args)){
+
+            $post = $request->getParsedBody();
+
+            if(!$service->adicionarSetor($post)){
+                return $response->withHeader("Location", '/setor')->withStatus(302);
+            }
+
+            return $response->withHeader("Location", '/setor')->withStatus(302);;
+        }
+
+        if($request->getMethod() === "POST" && $args['tipo'] === 'editar'){
+
+            $post = $request->getParsedBody();
+
+            if(!$service->editarSetor((int)$id, $post)){
+                return $response->withHeader("Location", '/setor')->withStatus(302);
+            }
+
+            return $response->withHeader("Location", "/admin/setor")->withStatus(302);;
+        }
+
+        switch($args['tipo']?? null){
+            case 'editar':
+                {
+                    if(!$id){
+                        return $response->withHeader("Location","/admin/setor")->withStatus(302);
+                    }
+                    $setores = $service->listarTodos(['id' => $id]);
+                    return $view->render($response, 'admin/form_adicionar_setor.twig', ['tipo' => $args['tipo'] ?? null,   'setores' => $setores[0] ]);
+                }
+                break;
+            default:
+                $setores = $service->listarTodos();
+                return $view->render($response, 'admin/form_adicionar_setor.twig', ['tipo' =>  'cadastro', 'setores' => $setores ]);
+                break;
+        }
+    });
+
+ $app->map(['GET', 'POST'], '/ramal', function(Request $request, Response $response){
+        
+        /*
+        $view = Twig::fromRequest($request);
+        $service = new \App\Ramal\Services\SetorService();
+        
+        if($request->getMethod() === "POST"){
+          
+            $post = $request->getParsedBody();
+
+            if(!$service->adicionarSetor($post)){
+                return $response->withHeader("Location", '/ramal')->withStatus(302);
+            }
+
+            return $response->withHeader("Location", '/ramal')->withStatus(302);;
+        }
+
+
+
+
+        return $view->render($response, 'admin/form_adicionar_ramal.twig', ['setores' => $setores ]);
+        */
+    });
+
+})->add(new \App\Ramal\Middleware\AuthAdmin());
 
 $app->run();
 $bootstrap->End();

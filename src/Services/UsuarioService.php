@@ -59,11 +59,16 @@ class UsuarioService {
 
     public function realizarlogin(string $login, string $senha){
         $usuario = \null;
-        if(!($usuario = $this->checarEmailExiste($login))){
-                return null;
+
+        $usuario = $this->checarEmailExiste($login);
+        if(!$usuario){
+            return \null;
         }
 
-        
+        if(!$this->checarUsuarioExiste($usuario->idusuario)){
+            return null;
+        }
+
         if(!\password_verify($senha, $usuario->senha)){
                 return null;
         }
