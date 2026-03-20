@@ -62,13 +62,19 @@ $app->group('/setor', function($app) {
         $setorService = new \App\Ramal\Services\SetorService();
         $setor  = $setorService->listarTodos(['id' => $id]) ?? "";
         $ramalCount = $alocRamalService->listarTodos(['idsetor' => (int)$id ])->count();
-        $listaRamais = $alocRamalService->listarTodos(['idsetor' => $id])->get();
+
+        if(isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado']){
+            $listaRamais = $alocRamalService->listarTodos(['idsetor' => $id])->get();
+        }else {
+            $listaRamais = $alocRamalService->listarTodos(['idsetor' => $id])->whereNull('alocacao_ramal.deletado_em')->get();
+        }
+      
 
 
         return $view->render($response, "ramal/lista.html.twig",['id' => $id,
                                                                                            'setor' => $setor ? $setor[0]->nome : "", 
                                                                                            'totalRamais' => $ramalCount,
-                                                                                           'ramais' => $listaRamais->toArray(),
+                                                                                           'ramais' => $listaRamais,
                                                                                             'usuario_logado' => $_SESSION['usuario_logado'] ?? false
                                                                                            ],
                                                                                           
@@ -144,8 +150,15 @@ $app->group('/dt', function($app){
 
 $app->group('/admin', function($app){
 
-    $app->map(['GET', 'POST'], '/setor/acoes[/{id:\d+}]', function(Request $request, Response $response, array $args){
-        
+    $app->map(['GET', 'POST'], '/setor/acoes[/{tipo}[/{id:\d+}]]', function(Request $request, Response $response, array $args){
+        $tipo = $args['tipo'];
+        $id = $args['id'];
+
+        switch($tipo){
+            case 'deletar':
+
+            break;
+        }
     });
     
     $app->map(['GET', 'POST'], '/setor[/{tipo}[/{id:\d+}]]', function(Request $request, Response $response, array $args){

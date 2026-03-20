@@ -21,11 +21,14 @@
         <tr>
             <th>RAMAL</th>
             <th>RESPONSÁVEL</th>
+{% if usuario_logado == true   %}
+            <th>ATIVO</th>
+{% endif  %}
 
 {% if usuario_logado == true   %}
             <th>Administrativo</th>
-        
 {% endif%}
+
         </tr>
     </thead>
     <tbody>
@@ -33,6 +36,16 @@
         <tr>
             <td>{{ ramal.numero }}</td>
             <td>{{ ramal.responsavel }}</td>
+{% if usuario_logado == true   %}
+            <td>
+                {% if(ramal.deletado_em is null) %}
+                    <span class="badge text-bg-success">Ativo</span>
+                {% else %}
+                    <span class="badge text-bg-danger">Desativado</span>
+                {% endif %}
+
+            </td>
+{% endif %}
 
 {% if usuario_logado == true   %}
             <td>
@@ -51,6 +64,9 @@
         <tr>
             <th>RAMAL</th>
             <th>RESPONSÁVEL</th>
+{% if usuario_logado == true   %}
+            <th>ATIVO</th>
+{% endif  %}
 
 {% if usuario_logado == true   %}
             <th>Administrativo</th>
@@ -81,70 +97,6 @@
                 },
         });
     });
-/*
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        {% if(usuario_logado)  %}
-        var logged = parseInt('{{ usuario_logado }}') ?? null;
-        {% endif %}
-
-            var columns = [
-                    {
-                        data: 'ramal_nome'
-                    },
-
-                    {
-                        data: 'ramal_numero'
-                    },
-
-                    {
-                        data: 'setor_nome'
-                    },
-
-            ];
-        
-        {% if(usuario_logado)  %}
-        if(logged){
-            columns.push({
-                data: null,
-                class: 'no-click',
-                render: function ( data, type, row, meta ){
-                            return '<div class="d-flex mb-3"> \
-                                    \
-                                        <button class="btn btn-danger"> \
-                                            <i class="fas fa-eraser"></i> \
-                                        </button> \
-                                    </div> \
-                            ';
-                        }
-    
-                    });
-        }
-        {% endif %}
-
-        var dt = new DataTable('#lista_ramais',{
-            processing: true,
-            serverSide: true,
-            searchable: true,
-            paging: true,
-            pageLength: 100,
-            language: {
-                url: '/assets/js/datatable-pt-br.json'
-            },
-   
-            
-            ajax: {
-                url: '/dt/ramal/{{ id }}',
-                type: "POST",
-                deferRender: true
-               
-            },
-
-            columns: columns
-
-        });
-    });
-*/
 </script>
 
 {% endblock %}

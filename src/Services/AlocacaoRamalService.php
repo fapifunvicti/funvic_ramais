@@ -13,7 +13,10 @@ class AlocacaoRamalService {
                             alocacao_ramal.ramal_id,
                             setor.nome as setor_nome,
                             ramal.nome as responsavel,
-                            ramal.numero
+                            ramal.numero,
+                            alocacao_ramal.inserido_em,
+                            alocacao_ramal.atualizado_em,
+                            alocacao_ramal.deletado_em
                         
                         "
                         )
@@ -41,7 +44,7 @@ class AlocacaoRamalService {
 
         }
 
-        $query->whereNull('alocacao_ramal.deletado_em');
+        //$query->whereNull('alocacao_ramal.deletado_em');
         return $query;
 
     }
