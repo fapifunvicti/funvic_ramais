@@ -50,7 +50,12 @@
 {% if usuario_logado == true   %}
             <td>
                 <div class="d-flex gap-3">
-                    <button hx-post="/setor" hx-target="#status" hx-swap="innerHTML" class="btn btn-danger"><i class="fas fa-eraser"></i></button>
+                    {% if(ramal.deletado_em is null) %}
+                        <button hx-post="/setor" hx-target="#status" hx-swap="innerHTML" class="btn btn-danger"><i class="fas fa-eraser"></i></button>
+                    {% else %}
+                        <button hx-post="/setor" hx-target="#status" hx-swap="innerHTML" class="btn btn-success"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
+                    {% endif %}
+                    
                     <button hx-post="/setor" hx-target="#status" hx-swap="innerHTML" class="btn btn-primary"><i class="fas fa-edit"></i></button>
 
 
