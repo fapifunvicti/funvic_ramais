@@ -3,14 +3,12 @@
         {% include "partials/menu_auth.twig" %}
         <div class="sidebar-header">
             <p>Setores:</p>
-            <button class="toggle-btn" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
 
 
 
         <ul class="sidebar-menu">
+            <li><a href="/setor"><i class="fas fa-home"></i>Página Incial</a></li>
             {% for item in menu_item %}
             <li><a href="/setor/{{ item.idsetor }}"><i class="fas fa-home"></i> <span class="menu-text">{{ item.nome }}</span></a></li>
             {% endfor %}

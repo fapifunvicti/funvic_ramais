@@ -10,12 +10,18 @@
     <h2>Desculpe nenhum Ramal disponivel no momento!</h2>
 
 {% else %}
+
+
+<div class="" id="status">
+
+</div>
+
 <table id="lista_ramais" class="table table-striped">
     <thead>
         <tr>
-            <th>NOME</th>
             <th>RAMAL</th>
-            <th>SETOR</th>
+            <th>RESPONSÁVEL</th>
+
 {% if usuario_logado == true   %}
             <th>Administrativo</th>
         
@@ -23,44 +29,59 @@
         </tr>
     </thead>
     <tbody>
-
-<!--
-    {% for r in ramais %}
+        {% for ramal in ramais %}
         <tr>
-            <td>{{ r.ramal_nome }}</td>
-            <td>{{ r.numero }}</td>
-            <td>{{ r.setor_nome }}</td>
-        {% if admin is not empty %}
-                <th>Administrativo</th>
-        {% endif%}
-        </tr>
-    {% endfor %}
+            <td>{{ ramal.numero }}</td>
+            <td>{{ ramal.responsavel }}</td>
 
--->
+{% if usuario_logado == true   %}
+            <td>
+                <div class="d-flex gap-3">
+                    <button hx-post="/setor" hx-target="#status" hx-swap="innerHTML" class="btn btn-danger"><i class="fas fa-eraser"></i></button>
+                    <button hx-post="/setor" hx-target="#status" hx-swap="innerHTML" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+
+
+                </div>
+            </td>
+{% endif%}
+        </tr>
+        {% endfor %}
     </tbody>
     <tfoot>
         <tr>
-            <th>NOME</th>
             <th>RAMAL</th>
-            <th>SETOR</th>
+            <th>RESPONSÁVEL</th>
+
 {% if usuario_logado == true   %}
             <th>Administrativo</th>
+        
 {% endif%}
         </tr>
     </tfoot>
 </table>
 
-
-
 {% endif %}
-
-
 {% endblock %}
 
 
 
 {% block js_extra %}
+
+
 <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var dt = new DataTable('#lista_ramais',{
+                processing: false,
+                serverSide: false,
+                searchable: true,
+                paging: true,
+                pageLength: 100,
+                language: {
+                    url: '/assets/js/datatable-pt-br.json'
+                },
+        });
+    });
+/*
     document.addEventListener('DOMContentLoaded', function() {
         
         {% if(usuario_logado)  %}
@@ -90,7 +111,7 @@
                 render: function ( data, type, row, meta ){
                             return '<div class="d-flex mb-3"> \
                                     \
-                                        <button> \
+                                        <button class="btn btn-danger"> \
                                             <i class="fas fa-eraser"></i> \
                                         </button> \
                                     </div> \
@@ -123,8 +144,7 @@
 
         });
     });
-
-
+*/
 </script>
 
 {% endblock %}

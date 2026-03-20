@@ -1,7 +1,7 @@
 <div class="topo">
     <div class="topo-header">
             {% block topo %}
-            {{ g_nome_setor }}
+            Setor: {{ g_nome_setor }}
             {% endblock %}
     </div>
     <div class="area-login">
@@ -10,8 +10,8 @@
                 <a href="/login">Login</a>
             </span>
         {% else %}
-            <span>
-                Usuario: {{ session('login').email }}
+            <span class="login-usuario">
+                  {{ session('login').nome }} {{ session('login').email }}
             </span>
             <span>
                 <a href="/login/logoff">Deslogar</a>

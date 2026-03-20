@@ -62,10 +62,13 @@ $app->group('/setor', function($app) {
         $setorService = new \App\Ramal\Services\SetorService();
         $setor  = $setorService->listarTodos(['id' => $id]) ?? "";
         $ramalCount = $alocRamalService->listarTodos(['idsetor' => (int)$id ])->count();
+        $listaRamais = $alocRamalService->listarTodos(['idsetor' => $id])->get();
+
 
         return $view->render($response, "ramal/lista.html.twig",['id' => $id,
                                                                                            'setor' => $setor ? $setor[0]->nome : "", 
                                                                                            'totalRamais' => $ramalCount,
+                                                                                           'ramais' => $listaRamais->toArray(),
                                                                                             'usuario_logado' => $_SESSION['usuario_logado'] ?? false
                                                                                            ],
                                                                                           
@@ -140,6 +143,10 @@ $app->group('/dt', function($app){
 
 
 $app->group('/admin', function($app){
+
+    $app->map(['GET', 'POST'], '/setor/acoes[/{id:\d+}]', function(Request $request, Response $response, array $args){
+        
+    });
     
     $app->map(['GET', 'POST'], '/setor[/{tipo}[/{id:\d+}]]', function(Request $request, Response $response, array $args){
         $view = Twig::fromRequest($request);

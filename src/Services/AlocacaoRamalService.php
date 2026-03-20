@@ -12,7 +12,7 @@ class AlocacaoRamalService {
                             alocacao_ramal.setor_idsetor,
                             alocacao_ramal.ramal_id,
                             setor.nome as setor_nome,
-                            ramal.nome as ramal_nome,
+                            ramal.nome as responsavel,
                             ramal.numero
                         
                         "
