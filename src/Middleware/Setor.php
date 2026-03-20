@@ -27,14 +27,14 @@ class Setor {
         }
 
         $setorService = new SetorService();
-        $setor = $setorService->listarTodos(['id' => (int)$id]);
+        $setor = $setorService->listarTodos(['id' => (int)$id])->first();
 
         if(!$setor){
             $this->twig->getEnvironment()->addGlobal('g_nome_setor', "Setor Desconhecido");
             return $handler->handle($request);
         }
 
-        $this->twig->getEnvironment()->addGlobal('g_nome_setor', $setor[0]->nome);
+        $this->twig->getEnvironment()->addGlobal('g_nome_setor', $setor->nome);
         return $handler->handle($request);
     }
 }

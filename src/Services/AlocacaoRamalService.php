@@ -3,12 +3,15 @@ namespace App\Ramal\Services;
 
 use \App\Ramal\DB\Setup as DBSetup;
 
+use function Symfony\Component\Clock\now;
+
 class AlocacaoRamalService {
 
     public function listarTodos(?array $parametros = null){
         $capsule = DBSetup::get();
         $query = $capsule->table('alocacao_ramal')->selectRaw(
                         "
+                            alocacao_ramal.idalocacao,
                             alocacao_ramal.setor_idsetor,
                             alocacao_ramal.ramal_id,
                             setor.nome as setor_nome,
@@ -47,6 +50,44 @@ class AlocacaoRamalService {
         //$query->whereNull('alocacao_ramal.deletado_em');
         return $query;
 
+    }
+
+    public function Deletar(int $id) : bool{
+        $capsule = DBSetup::get();
+        $ramal =  $capsule->table('alocacao_ramal')
+                   ->where('idalocacao', '=', $id);
+
+        if(!$ramal->first()){
+            return false;
+        }
+
+        if(!$ramal->update([
+            'deletado_em' => now()
+        ])){
+            return false;
+        }
+
+        return true;
+        
+    }
+
+    public function Restaurar(int $id) : bool{
+        $capsule = DBSetup::get();
+        $ramal =  $capsule->table('alocacao_ramal')
+                   ->where('idalocacao', '=', $id);
+
+        if(!$ramal->first()){
+            return false;
+        }
+
+        if(!$ramal->update([
+            'deletado_em' => \null
+        ])){
+            return false;
+        }
+
+        return true;
+        
     }
 
     public function Count(): int {

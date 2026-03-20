@@ -25,8 +25,8 @@ class SetorService {
 
         }
 
-        $query->whereNull('setor.deletado_em');
-        return $query->get()->toArray();
+     
+        return $query;
 
     }
 

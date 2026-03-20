@@ -60,7 +60,7 @@ $app->group('/setor', function($app) {
         }
 
         $setorService = new \App\Ramal\Services\SetorService();
-        $setor  = $setorService->listarTodos(['id' => $id]) ?? "";
+        $setor  = $setorService->listarTodos(['id' => $id])->first();
         $ramalCount = $alocRamalService->listarTodos(['idsetor' => (int)$id ])->count();
 
         if(isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado']){
@@ -72,7 +72,8 @@ $app->group('/setor', function($app) {
 
 
         return $view->render($response, "ramal/lista.html.twig",['id' => $id,
-                                                                                           'setor' => $setor ? $setor[0]->nome : "", 
+                                                                                           'setor' => $setor, 
+                                                                                           'setor_id' => $setor->idsetor,
                                                                                            'totalRamais' => $ramalCount,
                                                                                            'ramais' => $listaRamais,
                                                                                             'usuario_logado' => $_SESSION['usuario_logado'] ?? false
@@ -150,15 +151,23 @@ $app->group('/dt', function($app){
 
 $app->group('/admin', function($app){
 
-    $app->map(['GET', 'POST'], '/setor/acoes[/{tipo}[/{id:\d+}]]', function(Request $request, Response $response, array $args){
+    $app->map(['GET', 'POST'], '/setor/acoes[/{tipo}[/{id:\d+}[/{setor:\d+}]]]', function(Request $request, Response $response, array $args){
         $tipo = $args['tipo'];
         $id = $args['id'];
+        $service  = new \App\Ramal\Services\AlocacaoRamalService();
+        $setor_id = $args['setor'];
 
         switch($tipo){
             case 'deletar':
-
+                  $service->Deletar($id);
             break;
+            case 'restaurar':
+                  $service->Restaurar($id);
+            break;
+    
         }
+
+        return $response->withHeader("HX-Redirect", "/setor/{$setor_id}")->withStatus(302);
     });
     
     $app->map(['GET', 'POST'], '/setor[/{tipo}[/{id:\d+}]]', function(Request $request, Response $response, array $args){
