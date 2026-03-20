@@ -56,9 +56,9 @@
                         <button hx-post="/admin/setor/acoes/restaurar/{{ ramal.idalocacao }}/{{ setor.idsetor }}" hx-target="#status" hx-swap="innerHTML" class="btn btn-success"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
                     {% endif %}
                     
-                    <button hx-post="/admin/setor/acoes/deletar_permanente/{{ ramal.idalocacao }}/{{ setor.idsetor }}" hx-target="#status" hx-swap="innerHTML" hx-confirm="Este comando faz a remoção permanente e irreversivel. Considere desativar use o botao ao lado. Use apenas em Ultimo Caso. Tem Certeza que quer fazer isso?" hx-post="/setor" hx-target="#status" hx-swap="innerHTML" class="btn btn-danger"><i class="fa-solid fa-x"></i></button>
+                    
                     <button data-setor-id="{{ setor.idsetor }}" data-id="{{ ramal.idalocacao }}" data-bs-toggle="modal" data-bs-target="#editarModal" class="btn btn-secondary"><i class="fa-solid fa-pen"></i></button>
-
+                    <button hx-post="/admin/setor/acoes/deletar_permanente/{{ ramal.idalocacao }}/{{ setor.idsetor }}" hx-target="#status" hx-swap="innerHTML" hx-confirm="Este comando faz a remoção permanente e irreversivel. Considere desativar use o botao ao lado. Use apenas em Ultimo Caso. Tem Certeza que quer fazer isso?" hx-post="/setor" hx-target="#status" hx-swap="innerHTML" class="btn btn-danger"><i class="fa-solid fa-x"></i></button>
 
                 </div>
             </td>
