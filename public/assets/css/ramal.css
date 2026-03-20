@@ -1,8 +1,9 @@
 :root {
-    --largura-menu-lateral: 300px;
-    --menu-lateral-recolhido: 250px;
+    
+    --largura-menu-lateral: clamp(200px, 10vw, 300px);
+    --menu-lateral-recolhido: clamp(100px, 0vw, 300px);
 
-    --largura-lateral: 450px;
+    --largura-lateral: 300px;
 }
 
 
@@ -23,7 +24,7 @@
     width: var(--largura-menu-lateral);
     height: 100vh;
     color: white;
-    background-color: blue;
+    background-color: rgba(41, 128, 185,1.0);
     position: fixed;
     left: 0;
     top: 0;
@@ -105,6 +106,7 @@
     padding: 1rem 2rem;
     width: 100vw;
     height: 90px;
+    background: rgba(127, 140, 141,1.0);
 
 }
 
@@ -112,14 +114,29 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+
+
+}
+
+.area-login .login-usuario {
+    color: #000;
+    background: none;
+}
+
+.area-login > span {
+    font-size: clamp(1.0rem, 2vh, 1rem);
+    background: #000;
+    border-radius: 4.0px;
+ 
 }
 
 .area-login a {
     text-transform: uppercase;
-    color: black;
+    text-decoration: none;
+    color: #FFF;
     font-weight: bold;
+    margin: 5px 5px 5px 5px;
 }
-
 
 
 .topo-header {
