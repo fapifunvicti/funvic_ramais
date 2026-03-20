@@ -51,12 +51,13 @@
             <td>
                 <div class="d-flex gap-3">
                     {% if(ramal.deletado_em is null) %}
-                        <button hx-post="/admin/setor/acoes/deletar/{{ ramal.idalocacao }}/{{ setor.idsetor }}" hx-target="#status" hx-swap="innerHTML" class="btn btn-danger"><i class="fas fa-eraser"></i></button>
+                        <button hx-post="/admin/setor/acoes/deletar/{{ ramal.idalocacao }}/{{ setor.idsetor }}" hx-target="#status" hx-swap="innerHTML" class="btn btn-warning"><i class="fas fa-eraser"></i></button>
                     {% else %}
                         <button hx-post="/admin/setor/acoes/restaurar/{{ ramal.idalocacao }}/{{ setor.idsetor }}" hx-target="#status" hx-swap="innerHTML" class="btn btn-success"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
                     {% endif %}
                     
-                    <button hx-post="/setor" hx-target="#status" hx-swap="innerHTML" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                    <button hx-post="/admin/setor/acoes/deletar_permanente/{{ ramal.idalocacao }}/{{ setor.idsetor }}" hx-target="#status" hx-swap="innerHTML" hx-confirm="Este comando faz a remoção permanente e irreversivel. Considere desativar use o botao ao lado. Use apenas em Ultimo Caso. Tem Certeza que quer fazer isso?" hx-post="/setor" hx-target="#status" hx-swap="innerHTML" class="btn btn-danger"><i class="fa-solid fa-x"></i></button>
+                    <button data-setor-id="{{ setor.idsetor }}" data-id="{{ ramal.idalocacao }}" data-bs-toggle="modal" data-bs-target="#editarModal" class="btn btn-secondary"><i class="fa-solid fa-pen"></i></button>
 
 
                 </div>
@@ -81,6 +82,37 @@
     </tfoot>
 </table>
 
+
+<div class="modal fade" id="editarModal" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+                <form method="post" enctype="application/x-www-form-urlencoded">
+                    <div class="row">
+                        <div class="col">
+                            <label class="label-control" for="setor">Lista de Setores</label>
+                            <select class="form-select" name="setor" id="setor">
+                                <option value=""></option>
+                            </select>
+                        </div>
+      
+                    </div>
+                </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endif %}
 {% endblock %}
 
@@ -91,6 +123,23 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function(){
+{% if usuario_logado == true   %}
+        var edit_modal = document.getElementById('editarModal');
+        if(edit_modal){
+            edit_modal.addEventListener('shown.bs.modal', function(event){
+                const bt = event.relatedTarget;
+                const setor_id = bt.getAttribute('data-setor-id');
+                const id = bt.getAttribute('data-id');
+
+                $.post('/admin/listar/setor', function(e){
+                   console.log(e);
+                });
+
+
+            });
+        }
+{% endif %}
+
         var dt = new DataTable('#lista_ramais',{
                 processing: false,
                 serverSide: false,

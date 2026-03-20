@@ -36,7 +36,12 @@ class AlocacaoRamalService {
             }
 
             if(isset($parametros['id']) &&  $parametros['id'] != null){
-                $query->where('alocacao_ramal.ramal_id', '=', (int)$parametros['id']);
+                $query->where('alocacao_ramal.idalocacao', '=', (int)$parametros['id']);
+            }
+
+
+            if(isset($parametros['idramal']) && $parametros['idramal'] != null){
+                $query->where('alocacao_ramal.ramal_id', '=', (int)$parametros['idramal']);
             }
 
 
@@ -87,6 +92,13 @@ class AlocacaoRamalService {
         }
 
         return true;
+        
+    }
+
+    public function DeletarPermanente(int $id): bool {
+        $capsule = DBSetup::get();
+        $ramal = \App\Ramal\Model\AlocacaoModel::findOrFail($id);
+        return $ramal->delete();
         
     }
 

@@ -151,6 +151,34 @@ $app->group('/dt', function($app){
 
 $app->group('/admin', function($app){
 
+    $app->map(['GET', 'POST'], '/listar/{tipo}[/{id:\d+}[/{setor:\d+}]]', function(Request $request, Response $response, array $args){
+        $tipo = $args['tipo'] ?? null;
+        $id = $args['id'] ?? null;
+        //$setor = $args['setor'] ?? null;
+        $service  = new \App\Ramal\Services\AlocacaoRamalService();
+
+        $data = [];
+
+
+        switch($tipo){
+            case 'setor':
+                    $setorService = new \App\Ramal\Services\SetorService();
+                    $data  = $setorService->listarTodos($id ? ['id' => $id] : null)
+                    ->get()->toJson();
+                    break;
+
+            case 'ramal':
+                    $ramalService = new \App\Ramal\Services\RamalService();
+                    $data  = $ramalService->listarTodos($id ? ['id' => $id] : null)
+                    ->get()->toJson();
+                    break;
+
+        }
+        $response->getBody()->write($data);
+        return  $response->withHeader("Content-Type", "application/json; charset=utf-8");
+
+    });
+
     $app->map(['GET', 'POST'], '/setor/acoes[/{tipo}[/{id:\d+}[/{setor:\d+}]]]', function(Request $request, Response $response, array $args){
         $tipo = $args['tipo'];
         $id = $args['id'];
@@ -164,6 +192,10 @@ $app->group('/admin', function($app){
             case 'restaurar':
                   $service->Restaurar($id);
             break;
+
+            case 'deletar_permanente':
+                $service->DeletarPermanente($id);
+                break;
     
         }
 
